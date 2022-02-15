@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="glide"
+        android:id="@+id/miGlide"
+        />
+    <item android:title="executer"
+        android:id="@+id/miExecuter"
+        />
+
+    <item android:title="enqueue"
+        android:id="@+id/miEnqueue"
+        />
+
+</menu>

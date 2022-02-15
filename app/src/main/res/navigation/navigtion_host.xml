@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigtion_host.xml"
+    app:startDestination="@id/glide">
+    <fragment
+        android:id="@+id/glide"
+        android:name="com.alireza.quizone.Glide"
+        android:label="Glide" />
+    <fragment
+        android:id="@+id/excuter"
+        android:name="com.alireza.quizone.Excuter"
+        android:label="Excuter" />
+    <fragment
+        android:id="@+id/enqueue"
+        android:name="com.alireza.quizone.Enqueue"
+        android:label="Enqueue" />
+</navigation>
