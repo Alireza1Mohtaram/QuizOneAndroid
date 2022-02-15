@@ -18,6 +18,7 @@ class Enqueue : Fragment(R.layout.enqueue_layout) {
     lateinit var binding: EnqueueLayoutBinding
     private val requestUrl:String ="https://picsum.photos/v2/list?limit=20"
     lateinit var request: Request
+    var responseBody:String?=""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,29 +34,37 @@ class Enqueue : Fragment(R.layout.enqueue_layout) {
         activity?.runOnUiThread {  binding.enqueueText.text = load() }
     }
     private fun load(): String {
+
         Log.d("Data","load is running")
         request = Request.Builder().url(requestUrl).build()
-        var responseBody:String=""
+
         try {
                 val call = clinet.newCall(request)
             call.enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                   responseBody = "fail"
-                    Log.d("ResEnqueue",responseBody)
+                    Log.d("ResEnqueue", responseBody!!)
+
 
                 }
                 override fun onResponse(call: Call, response: Response) {
-                    responseBody = response.body.toString()
-                    Log.d("ResEnqueue",responseBody)
+                    responseBody = response.body?.string()
+                    responseBody?.let { Log.d("ResEnqueue", it) }
+
                 }
+
             })
         }catch (e:Exception){
             println(e.message)
         }
+
         Log.d("DataEnqueue","load is done")
+        return responseBody!!
+    }
 
-
-        return responseBody
+    override fun onResume() {
+        super.onResume()
+        binding.enqueueText.text = load()
     }
 
 }

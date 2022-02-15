@@ -25,7 +25,7 @@ class Excuter : Fragment(R.layout.activity_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.executerText.text = load()
-        activity?.runOnUiThread {  binding.executerText.text = load() }
+        //activity?.runOnUiThread {  binding.executerText.text = load() }
 
     }
     override fun onCreateView(
