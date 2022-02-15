@@ -20,7 +20,7 @@ class Glide : Fragment(R.layout.glide_layout) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.executer_layout, container, false)
+        binding = DataBindingUtil.inflate(layoutInflater, R.layout.glide_layout, container, false)
         return binding.root
     }
 
