@@ -33,27 +33,27 @@ class Glide : Fragment(R.layout.glide_layout) {
 
         binding.btnShare1.setOnClickListener {
 
-            sendMovie(
+            sendPic(
                 binding.titleSoonFragment1.text.toString(),
                 binding.descSoonFragment1.text.toString()
             )
         }
 
         binding.btnShare2.setOnClickListener {
-            sendMovie(
+            sendPic(
                 binding.titleSoonFragment2.text.toString(),
                 binding.descSoonFragment2.text.toString()
             )
         }
 
         binding.btnShare3.setOnClickListener {
-            sendMovie(
+            sendPic(
                 binding.titleSoonFragment3.text.toString(),
                 binding.descSoonFragment3.text.toString()
             )
         }
     }
-    private fun sendMovie(title: String, desc: String) {
+    private fun sendPic(title: String, desc: String) {
 
         val i = Intent().apply {
             action = Intent.ACTION_SEND
