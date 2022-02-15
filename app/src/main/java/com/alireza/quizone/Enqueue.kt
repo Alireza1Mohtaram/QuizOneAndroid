@@ -30,29 +30,31 @@ class Enqueue : Fragment(R.layout.enqueue_layout) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.enqueueText.text = load()
+        activity?.runOnUiThread {  binding.enqueueText.text = load() }
     }
     private fun load(): String {
         Log.d("Data","load is running")
         request = Request.Builder().url(requestUrl).build()
         var responseBody:String=""
-
         try {
                 val call = clinet.newCall(request)
             call.enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                   responseBody = "fail"
-                }
+                    Log.d("ResEnqueue",responseBody)
 
+                }
                 override fun onResponse(call: Call, response: Response) {
-                  responseBody = response.body.toString()
+                    responseBody = response.body.toString()
+                    Log.d("ResEnqueue",responseBody)
                 }
             })
         }catch (e:Exception){
             println(e.message)
         }
-        Log.d("Data","load is done")
-        Log.d("Res",responseBody)
+        Log.d("DataEnqueue","load is done")
+
+
         return responseBody
     }
 

@@ -25,6 +25,8 @@ class Excuter : Fragment(R.layout.activity_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.executerText.text = load()
+        activity?.runOnUiThread {  binding.executerText.text = load() }
+
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +39,10 @@ class Excuter : Fragment(R.layout.activity_main) {
 
 
     private fun load(): String {
+
         Log.d("Data","load is running")
         request = Request.Builder().url(requestUrl).build()
-        var responseBody:String=""
+        var responseBody:String = ""
         val future : Future<String>
         try {
             future = executer.submit(Callable<String> {
@@ -48,7 +51,10 @@ class Excuter : Fragment(R.layout.activity_main) {
                 response.body?.let { Log.d("Res", it.string()) }
                 response.body.toString()
             })
+           // binding.executerText.text = future.get().toString()
+
             responseBody = future.get()
+            binding.executerText.text = responseBody
         }catch (e:Exception){
             println(e.message)
         }
@@ -56,6 +62,9 @@ class Excuter : Fragment(R.layout.activity_main) {
         Log.d("Res",responseBody)
         return responseBody
     }
+
+
+
 
 
 
